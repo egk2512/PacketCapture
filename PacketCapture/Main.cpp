@@ -5,7 +5,9 @@
 
 #include "Level2.h"
 
-//Привет хуесос
+void Hello(){
+  std::cout << "Hello world!";
+}
 
 struct Packet {
     Level2* level2;
