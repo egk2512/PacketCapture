@@ -5,6 +5,10 @@
 
 #include "Level2.h"
 
+void Hello(){
+  std::cout << "Hello world!";
+}
+
 struct Packet {
     Level2* level2;
 
