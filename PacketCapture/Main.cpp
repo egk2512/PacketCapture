@@ -6,19 +6,19 @@
 #include "Level2.h"
 
 struct Packet {
-    Level2& level2;
+    Level2* level2;
 
-    Packet(Level2& level2) : level2{level2}{}
+    Packet(Level2* level2) : level2{level2}{}
 };
 
 void got_packet(u_char* args, const struct pcap_pkthdr* header, const u_char* packet) {
-    const std::vector<u_char> data{ packet, packet + header->len };
-
+    std::vector<u_char> data{ packet, packet + header->len };
     Level2Type type = define_level2_type(data);
 
+    Level2* obj = nullptr;
     if (type == Level2Type::Ethernet) {
         Ethernet temp(data);
-        Level2& obj = &temp;
+        obj = &temp;
     }
     else {
         std::cout << "Error: undefined level 2 type\n";
